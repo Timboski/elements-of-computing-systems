@@ -17,4 +17,13 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    Inc16 (in=oldstate, out=incremented);
+
+    Mux16 (a=incremented, b=in, sel=load, out=outloadorinc);
+    Mux16 (a=outloadorinc, sel=reset, out=newstate);
+
+    Or (a=load, b=inc, out=loadorinc);
+    Or (a=loadorinc, b=reset, out=setnewstate);
+
+    Register (in=newstate, load=setnewstate, out=oldstate, out=out);
 }
