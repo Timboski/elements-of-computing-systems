@@ -10,3 +10,46 @@
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
 // Put your code here.
+
+// Initialise output to zero 
+@0
+D=A
+@R2
+M=D
+
+// Initialise loop counter (to R1, decrement on each loop until zero)
+@R1
+D=M
+@R3
+M=D
+
+(LOOP)
+
+// Check counter
+@R3
+D=M
+@END
+D;JLE
+
+// Loop body
+@R2
+D=M
+@R0
+D=D+M
+@R2
+M=D
+
+// Decrement loop counter
+@R3
+D=M
+D=M-1
+M=D
+
+// Repeat loop
+@LOOP
+0;JMP
+
+// Stop
+(END)
+@END
+0;JMP
