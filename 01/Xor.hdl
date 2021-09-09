@@ -14,4 +14,13 @@ CHIP Xor {
 
     PARTS:
     // Put your code here:
+    Not(in=a, out=inva);
+    Not(in=b, out=invb);
+    // And(a=a, b=invb, out=ainvb);
+    // And(a=inva, b=b, out=binva);
+    // Or(a=ainvb, b=binva, out=out);
+    // Optimise our the Not gates
+    Nand(a=a, b=invb, out=ainvb);
+    Nand(a=inva, b=b, out=binva);
+    Nand(a=ainvb, b=binva, out=out);
 }
